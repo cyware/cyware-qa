@@ -1,0 +1,9 @@
+cyware-master:
+  access:
+    max_login_attempts: 9999
+cyware-worker1:
+  access:
+    max_login_attempts: 9999
+cyware-worker2:
+  access:
+    max_login_attempts: 9999

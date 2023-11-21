@@ -1,0 +1,155 @@
+- name: cloudtrail_without_only_logs_after
+  description: CloudTrail only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: cloudtrail
+    BUCKET_NAME: cyware-cloudtrail-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: cloudtrail
+    bucket_name: cyware-cloudtrail-integration-tests
+    expected_results: 1
+
+- name: vpc_without_only_logs_after
+  description: VPC only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: vpcflow
+    BUCKET_NAME: cyware-vpcflow-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: vpcflow
+    bucket_name: cyware-vpcflow-integration-tests
+    expected_results: 1
+
+- name: config_without_only_logs_after
+  description: Config only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: config
+    BUCKET_NAME: cyware-config-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: config
+    bucket_name: cyware-config-integration-tests
+    expected_results: 1
+
+- name: alb_without_only_logs_after
+  description: ALB only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: alb
+    BUCKET_NAME: cyware-alb-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: alb
+    bucket_name: cyware-alb-integration-tests
+    expected_results: 1
+
+- name: clb_without_only_logs_after
+  description: CLB only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: clb
+    BUCKET_NAME: cyware-clb-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: clb
+    bucket_name: cyware-clb-integration-tests
+    expected_results: 1
+
+- name: nlb_without_only_logs_after
+  description: NLB only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: nlb
+    BUCKET_NAME: cyware-nlb-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: nlb
+    bucket_name: cyware-nlb-integration-tests
+    expected_results: 1
+
+- name: kms_without_only_logs_after
+  description: KMS only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: custom
+    BUCKET_NAME: cyware-kms-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: custom
+    bucket_name: cyware-kms-integration-tests
+    expected_results: 1
+
+- name: macie_without_only_logs_after
+  description: Macie only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: custom
+    BUCKET_NAME: cyware-macie-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: custom
+    bucket_name: cyware-macie-integration-tests
+    expected_results: 1
+
+- name: trusted_advisor_without_only_logs_after
+  description: Trusted Advisor only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: custom
+    BUCKET_NAME: cyware-trusted-advisor-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: custom
+    bucket_name: cyware-trusted-advisor-integration-tests
+    expected_results: 1
+
+- name: guardduty_without_only_logs_after
+  description: GuardDuty only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: guardduty
+    BUCKET_NAME: cyware-guardduty-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: guardduty
+    bucket_name: cyware-guardduty-integration-tests
+    expected_results: 1
+
+- name: native_guardduty_without_only_logs_after
+  description: Native GuardDuty only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: guardduty
+    BUCKET_NAME: cyware-native-guardduty-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: guardduty
+    bucket_name: cyware-native-guardduty-integration-tests
+    expected_results: 1
+
+- name: waf_without_only_logs_after
+  description: WAF only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: waf
+    BUCKET_NAME: cyware-waf-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: waf
+    bucket_name: cyware-waf-integration-tests
+    expected_results: 1
+
+- name: server_access_without_only_logs_after
+  description: Server Access only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: server_access
+    BUCKET_NAME: cyware-server-access-integration-tests
+    PATH: ''
+  metadata:
+    bucket_type: server_access
+    bucket_name: cyware-server-access-integration-tests
+    expected_results: 1
+    table_name: s3_server_access
+
+- name: cisco_umbrella_without_only_logs_after
+  description: Umbrella only logs after configurations
+  configuration_parameters:
+    BUCKET_TYPE: cisco_umbrella
+    BUCKET_NAME: cyware-umbrella-integration-tests
+    PATH: dnslogs
+  metadata:
+    bucket_type: cisco_umbrella
+    bucket_name: cyware-umbrella-integration-tests
+    expected_results: 1
+    path: dnslogs

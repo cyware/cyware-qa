@@ -1,0 +1,27 @@
+cyware-manager:
+  roles:
+    - manager
+
+cyware-agent1:
+  roles:
+    - agent
+  manager: cyware-manager
+  version: 4.1.5
+  revision: 1
+  repository: live
+
+cyware-agent2:
+  roles:
+    - agent
+  manager: cyware-manager
+  version: 4.2.2
+  revision: 1
+  repository: live
+
+cyware-agent3:
+  manager: cyware-manager
+  roles:
+    - agent
+  version: 4.2.5
+  revision: 1
+  repository: live

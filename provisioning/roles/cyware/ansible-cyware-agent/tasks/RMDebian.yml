@@ -1,0 +1,6 @@
+---
+- name: Remove Cyware repository (and clean up left-over metadata)
+  apt_repository:
+    repo: "{{ cyware_agent_config.repo.apt }}"
+    state: absent
+  changed_when: false

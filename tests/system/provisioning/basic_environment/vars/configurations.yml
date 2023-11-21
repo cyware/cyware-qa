@@ -1,0 +1,7 @@
+manager_hostname: "cyware-manager"
+
+agent1_hostname: "cyware-agent1"
+
+docker_network: "basic_environment_net"
+
+image: "dontpanicat/debian:buster"

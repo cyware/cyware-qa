@@ -1,0 +1,20 @@
+cluster_key: "00000000000000000000000000000000"
+
+master_hostname: "cyware-master"
+
+worker1_hostname: "cyware-worker1"
+worker2_hostname: "cyware-worker2"
+
+agent1_id: "001"
+agent2_id: "002"
+agent3_id: "003"
+agent1_hostname: "cyware-agent1"
+agent2_hostname: "cyware-agent2"
+agent3_hostname: "cyware-agent3"
+agent1_key: "1111111111111111111111111111111111111111111111111111111111111111"
+agent2_key: "2222222222222222222222222222222222222222222222222222222222222222"
+agent3_key: "3333333333333333333333333333333333333333333333333333333333333333"
+
+docker_network: "cluster_net"
+
+image: "dontpanicat/debian:buster"

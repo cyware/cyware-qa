@@ -1,0 +1,157 @@
+'''
+copyright: Copyright (C) 2015-2022, KhulnaSoft Ltd.
+
+           Created by Cyware, Inc. <info@khulnasoft.com>.
+
+           This program is free software; you can redistribute it and/or modify it under the terms of GPLv2
+
+type: integration
+
+brief: Cyware-db is the daemon in charge of the databases with all the Cyware persistent information, exposing a socket
+       to receive requests and provide information. The Cyware core uses list-based databases to store information
+       related to agent keys, and FIM/Rootcheck event data.
+       This test checks the usage of the set_agent_groups command used for changing the agent's group data and for the
+       cluster's database sync procedures.
+
+tier: 0
+
+modules:
+    - cyware_db
+
+components:
+    - manager
+
+daemons:
+    - cyware-db
+
+os_platform:
+    - linux
+
+os_version:
+    - Arch Linux
+    - Amazon Linux 2
+    - Amazon Linux 1
+    - CentOS 8
+    - CentOS 7
+    - CentOS 6
+    - Ubuntu Focal
+    - Ubuntu Bionic
+    - Ubuntu Xenial
+    - Ubuntu Trusty
+    - Debian Buster
+    - Debian Stretch
+    - Debian Jessie
+    - Debian Wheezy
+    - Red Hat 8
+    - Red Hat 7
+    - Red Hat 6
+
+references:
+    - https://documentation.cyware.khulnasoft.com/current/user-manual/reference/daemons/cyware-db.html
+
+tags:
+    - cyware_db
+'''
+import os
+import time
+import pytest
+
+import cyware_testing as fw
+from cyware_testing import event_monitor as evm
+from cyware_testing.cyware_db import query_wdb, insert_agent_in_db
+from cyware_testing.tools.services import delete_dbs
+from cyware_testing.tools.file import get_list_of_content_yml
+
+# Marks
+pytestmark = [pytest.mark.linux, pytest.mark.tier(level=0), pytest.mark.server]
+
+# Configurations
+test_data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+messages_file = os.path.join(os.path.join(test_data_path, 'global'), 'set_agent_groups.yaml')
+module_tests = get_list_of_content_yml(messages_file)
+
+
+# Fixtures
+@pytest.fixture(scope='module')
+def remove_database(request):
+    yield
+    delete_dbs()
+
+
+# Tests
+@pytest.mark.parametrize('test_case',
+                         [case['test_case'] for module_data in module_tests for case in module_data[0]],
+                         ids=[f"{module_name}: {case['name']}"
+                              for module_data, module_name in module_tests
+                              for case in module_data]
+                         )
+def test_set_agent_groups(remove_database, restart_cyware_daemon, test_case, create_groups):
+    '''
+    description: Check that every input message using the 'set_agent_groups' command in cyware-db socket generates
+                 the proper output to cyware-db socket. To do this, it performs a query to the socket with a command
+                 taken from the list of test_cases's 'input' field, and compare the result with the test_case's
+                 'output' and 'expected_group' fields.
+
+    cyware_min_version: 4.4.0
+
+    parameters:
+        - remove_database:
+            type: fixture
+            brief: Delete databases.
+        - restart_cyware:
+            type: fixture
+            brief: Reset the 'ossec.log' file and restart Cyware.
+        - test_case:
+            type: fixture
+            brief: List of test_case stages (dicts with input, output and agent_id and expected_groups keys).
+        - create_groups:
+            type: fixture:
+            brief: Create required groups.
+
+    assertions:
+        - Verify that the socket response matches the expected output.
+        - Verify that the agent has the expected_group assigned.
+
+    input_description:
+        - Test cases are defined in the set_agent_groups.yaml file. This file contains the command to insert the agents
+          groups, with different modes and combinations, as well as the expected outputs and results.
+
+    expected_output:
+        - f"Assertion Error - expected {output}, but got {response}"
+        - 'Unable to add agent'
+        - 'did not recieve expected groups in Agent.'
+
+    tags:
+        - cyware_db
+        - wdb_socket
+    '''
+    output = test_case['output']
+    agent_id = test_case['agent_id']
+
+    # Insert test Agent
+    response = insert_agent_in_db(id=agent_id, connection_status='disconnected', registration_time=str(time.time()))
+
+    # Apply preconditions
+    if 'pre_input' in test_case:
+        query_wdb(test_case['pre_input'])
+
+    # Add tested group
+    response = query_wdb(test_case["input"])
+
+    # validate output
+    assert response == output, f"Assertion Error - expected {output}, but got {response}"
+
+    # Check warnings
+    if 'expected_warning' in test_case:
+        callback = test_case['expected_warning']
+        evm.check_event(callback=callback, file_to_monitor=fw.LOG_FILE_PATH, timeout=20).result()
+
+    # get agent data and validate agent's groups
+    response = query_wdb(f'global get-agent-info {agent_id}')
+
+    assert test_case['expected_group_sync_status'] == response[0]['group_sync_status']
+
+    if test_case["expected_group"] == 'None':
+        assert 'group' not in response[0], "Agent has groups data and it was expecting no group data"
+    else:
+        assert test_case["expected_group"] == response[0]['group'], "Did not receive the expected groups in the agent."

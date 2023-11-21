@@ -1,0 +1,72 @@
+---
+- name: Create our container (Master)
+  hosts: localhost
+  vars_files:
+    - ./vars/configurations.yml
+  tasks:
+    - name: Create a network
+      docker_network:
+        name: "{{ docker_network }}"
+    - docker_container:
+        name: "{{ master_hostname }}"
+        image: "{{ image }}"
+        hostname: "{{ master_hostname }}"
+        networks:
+          - name: "{{ docker_network }}"
+        ports:
+          - "55010:55000"
+
+- name: Create our container (Worker1)
+  hosts: localhost
+  vars_files:
+    - ./vars/configurations.yml
+  tasks:
+    - docker_container:
+        name: "{{ worker1_hostname }}"
+        image: "{{ image }}"
+        hostname: "{{ worker1_hostname }}"
+        networks:
+          - name: "{{ docker_network }}"
+        ports:
+          - "55011:55000"
+
+- name: Create our container (Worker2)
+  hosts: localhost
+  vars_files:
+    - ./vars/configurations.yml
+  tasks:
+    - docker_container:
+        name: "{{ worker2_hostname }}"
+        image: "{{ image }}"
+        hostname: "{{ worker2_hostname }}"
+        networks:
+          - name: "{{ docker_network }}"
+        ports:
+          - "55012:55000"
+
+- name: Cyware Master
+  hosts: cyware-master
+  vars:
+    master_hostname: "cyware-master"
+  vars_files:
+    - ./vars/configurations.yml
+  roles:
+    - name: "roles/master-role"
+
+- name: Cyware Worker1
+  hosts: cyware-worker1
+  vars:
+    worker_name: cyware-worker1
+  vars_files:
+    - ./vars/configurations.yml
+  roles:
+    - name: "roles/worker-role"
+
+- name: Cyware Worker2
+  hosts: cyware-worker2
+  vars:
+    worker_name: cyware-worker2
+  vars_files:
+    - ./vars/configurations.yml
+  roles:
+    - name: "roles/worker-role"

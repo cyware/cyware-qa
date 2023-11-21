@@ -1,0 +1,77 @@
+---
+- name: "Check and update debian repositories"
+  shell:
+    cmd: apt-get update --allow-releaseinfo-change
+
+- name: "Installing dependencies using apt"
+  apt:
+    pkg:
+      - git
+      - gcc
+      - make
+      - cmake
+      - libc6-dev
+      - curl
+      - policycoreutils
+      - automake
+      - autoconf
+      - libtool
+      - sqlite3
+      - libssl-dev
+    force_apt_get: yes
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: "Get manager package"
+  ansible.builtin.get_url:
+    url: "https://{{package_repository}}.cyware.khulnasoft.com/{{repository}}/apt/pool/main/w/cyware-manager/cyware-manager_{{package_version}}-{{package_revision}}_amd64.deb"
+    dest: /tmp/cyware-manager.deb
+
+- name: "Install manager package"
+  ansible.builtin.apt:
+    deb: /tmp/cyware-manager.deb
+
+- name: Copy ossec.conf file
+  copy:
+    src: ../files/ossec.conf
+    dest: /var/ossec/etc/ossec.conf
+    owner: cyware
+    group: cyware
+    mode: '0644'
+
+- name: Set cluster key
+  lineinfile:
+    path: /var/ossec/etc/ossec.conf
+    regexp: '<key>(KEY)</key>'
+    line: "<key>{{ cluster_key }}</key>"
+    backrefs: yes
+
+- name: Set Cyware Worker name
+  lineinfile:
+    path: /var/ossec/etc/ossec.conf
+    regexp: '<node_name>(.*)</node_name>'
+    line: "<node_name>{{ worker_name }}</node_name>"
+    backrefs: yes
+
+- name: Set Cyware Worker IP
+  lineinfile:
+    path: /var/ossec/etc/ossec.conf
+    regexp: '<node>(.*)</node>'
+    line: "<node>{{ master_hostname }}</node>"
+    backrefs: yes
+
+- name: enable authd and clusterd debug mode
+  blockinfile:
+    path: /var/ossec/etc/local_internal_options.conf
+    block: |
+      authd.debug=2
+      cyware_clusterd.debug=2
+      cyware_db.debug=2
+      cyware_modules.debug=2
+
+- name: Restart Cyware
+  command: /var/ossec/bin/cyware-control restart
+
+- name: "Install necessary dependencies"
+  command: /var/ossec/framework/python/bin/python3 -m pip install lockfile filetype certifi testinfra

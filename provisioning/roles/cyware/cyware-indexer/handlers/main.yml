@@ -1,0 +1,5 @@
+---
+- name: restart cyware-indexer
+  service:
+    name: cyware-indexer
+    state: restarted

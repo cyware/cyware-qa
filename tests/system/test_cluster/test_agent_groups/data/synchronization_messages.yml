@@ -1,0 +1,12 @@
+---
+cyware-master:
+  - regex: '.*SendSync.*Receiving SendSync request \(authd\) from cyware-worker1.*'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 60
+cyware-worker1:
+  - regex: '.*Connection received in local server*'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 100
+  - regex: ".*Command received: b'sendsync'"
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 100

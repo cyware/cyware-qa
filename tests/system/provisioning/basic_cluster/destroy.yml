@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  tasks:
+  - docker_container:
+      name: cyware-master
+      state: absent
+      force_kill: yes
+  - docker_container:
+      name: cyware-worker1
+      state: absent
+      force_kill: yes
+  - docker_container:
+      name: cyware-worker2
+      state: absent
+      force_kill: yes
+  - docker_container:
+      name: cyware-agent1
+      state: absent
+      force_kill: yes
+  - docker_container:
+      name: cyware-agent2
+      state: absent
+      force_kill: yes
+  - docker_container:
+      name: cyware-agent3
+      state: absent
+      force_kill: yes

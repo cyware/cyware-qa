@@ -1,0 +1,14 @@
+cyware-worker1:
+  - regex: .*Integrity sync.*Starting.*
+    path: /var/ossec/logs/cluster.log
+    timeout: 240
+  - regex: .*Integrity sync.*Finished in.*
+    path: /var/ossec/logs/cluster.log
+    timeout: 30
+cyware-worker2:
+  - regex: .*Integrity sync.*Starting.*
+    path: /var/ossec/logs/cluster.log
+    timeout: 240
+  - regex: .*Integrity sync.*Finished in.*
+    path: /var/ossec/logs/cluster.log
+    timeout: 30

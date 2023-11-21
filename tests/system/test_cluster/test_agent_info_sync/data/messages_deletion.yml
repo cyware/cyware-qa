@@ -1,0 +1,12 @@
+---
+cyware-worker2:
+  - regex: '.*Updating local files: End'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 60
+cyware-agent3:
+  - regex: '.*Trying to connect to server.*'
+    path: "/var/ossec/logs/ossec.log"
+    timeout: 60
+  - regex: '.*Closing connection to server.*'
+    path: "/var/ossec/logs/ossec.log"
+    timeout: 60

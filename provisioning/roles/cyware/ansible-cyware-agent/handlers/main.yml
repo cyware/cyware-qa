@@ -1,0 +1,6 @@
+---
+- name: restart cyware-agent
+  service: name=cyware-agent state=restarted enabled=yes
+
+- name: Windows | Restart Cyware Agent
+  win_service: name=CywareSvc start_mode=auto state=restarted

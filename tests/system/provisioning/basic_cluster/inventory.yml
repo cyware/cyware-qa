@@ -1,0 +1,55 @@
+all:
+  hosts:
+    cyware-master:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent3:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+managers:
+  hosts:
+    cyware-master:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+master:
+  hosts:
+    cyware-master:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+workers:
+  hosts:
+    cyware-worker1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+agents:
+  hosts:
+    cyware-agent1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent3:
+      ansible_connection: docker
+      ansible_python_interpreter: python

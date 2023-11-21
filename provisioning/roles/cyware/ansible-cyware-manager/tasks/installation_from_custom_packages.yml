@@ -1,0 +1,32 @@
+---
+  - block:
+      - name: Install Cyware Manager from .deb packages
+        apt:
+          deb: "{{ cyware_custom_packages_installation_manager_deb_url }}"
+          state: present
+        when:
+          - cyware_custom_packages_installation_manager_enabled
+    when:
+      - ansible_os_family|lower == "debian"
+
+  - block:
+    - name: Install Cyware Manager from .rpm packages | yum
+      yum:
+        name: "{{ cyware_custom_packages_installation_manager_rpm_url }}"
+        state: present
+      when:
+        - cyware_custom_packages_installation_manager_enabled
+        - not (ansible_distribution|lower == "centos" and ansible_distribution_major_version >= "8")
+        - not (ansible_distribution|lower == "redhat" and ansible_distribution_major_version >= "8")
+
+    - name: Install Cyware Manager from .rpm packages | dnf
+      dnf:
+        name: "{{ cyware_custom_packages_installation_manager_rpm_url }}"
+        state: present
+        disable_gpg_check: True
+      when:
+        - cyware_custom_packages_installation_manager_enabled
+        - (ansible_distribution|lower == "centos" and ansible_distribution_major_version >= "8") or
+          (ansible_distribution|lower == "redhat" and ansible_distribution_major_version >= "8")
+    when:
+      - ansible_os_family|lower == "redhat"

@@ -1,0 +1,19 @@
+---
+cyware-worker2:
+  - regex: '.*Received.*shared files to update from .*'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 60
+  - regex: '.*Worker cyware-worker2.*Integrity sync.*Finished in.*'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 60
+  - regex: '.*Worker cyware-worker2.*Integrity sync.*Starting.*'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 60
+  - regex: '.*Worker cyware-worker2.*Integrity sync.*Finished in.*'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 60
+
+cyware-master:
+  - regex: '.*Worker cyware-worker2.*Integrity check.*Finished in.*'
+    path: "/var/ossec/logs/cluster.log"
+    timeout: 60

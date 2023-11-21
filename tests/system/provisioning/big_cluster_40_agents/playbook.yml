@@ -1,0 +1,127 @@
+---
+- name: Create our container (Master)
+  hosts: localhost
+  vars_files:
+    - ./vars/configurations.yml
+  tasks:
+    - name: Create a network
+      docker_network:
+        name: "{{ docker_network }}"
+    - docker_container:
+        name: "{{ master_hostname }}"
+        image: "{{ image }}"
+        hostname: "{{ master_hostname }}"
+        networks:
+          - name: "{{ docker_network }}"
+
+- name: Create our container (Worker1)
+  hosts: localhost
+  vars_files:
+    - ./vars/configurations.yml
+  tasks:
+    - docker_container:
+        name: "{{ worker1_hostname }}"
+        image: "{{ image }}"
+        hostname: "{{ worker1_hostname }}"
+        networks:
+          - name: "{{ docker_network }}"
+
+- name: Create our container (Worker2)
+  hosts: localhost
+  vars_files:
+    - ./vars/configurations.yml
+  tasks:
+    - docker_container:
+        name: "{{ worker2_hostname }}"
+        image: "{{ image }}"
+        hostname: "{{ worker2_hostname }}"
+        networks:
+          - name: "{{ docker_network }}"
+
+- name: Create our agents containers (1-40)
+  hosts: localhost
+  vars_files:
+    - ./vars/configurations.yml
+  tasks:
+    - docker_container:
+        name: "{{ item.name }}"
+        image: "{{ image }}"
+        hostname: "{{ item.name }}"
+        networks:
+          - name: "{{ docker_network }}"
+      with_items:
+        - { name: "cyware-agent1"}
+        - { name: "cyware-agent2"}
+        - { name: "cyware-agent3"}
+        - { name: "cyware-agent4"}
+        - { name: "cyware-agent5"}
+        - { name: "cyware-agent6"}
+        - { name: "cyware-agent7"}
+        - { name: "cyware-agent8"}
+        - { name: "cyware-agent9"}
+        - { name: "cyware-agent10"}
+        - { name: "cyware-agent11"}
+        - { name: "cyware-agent12"}
+        - { name: "cyware-agent13"}
+        - { name: "cyware-agent14"}
+        - { name: "cyware-agent15"}
+        - { name: "cyware-agent16"}
+        - { name: "cyware-agent17"}
+        - { name: "cyware-agent18"}
+        - { name: "cyware-agent19"}
+        - { name: "cyware-agent20"}
+        - { name: "cyware-agent21"}
+        - { name: "cyware-agent22"}
+        - { name: "cyware-agent23"}
+        - { name: "cyware-agent24"}
+        - { name: "cyware-agent25"}
+        - { name: "cyware-agent26"}
+        - { name: "cyware-agent27"}
+        - { name: "cyware-agent28"}
+        - { name: "cyware-agent29"}
+        - { name: "cyware-agent30"}
+        - { name: "cyware-agent31"}
+        - { name: "cyware-agent32"}
+        - { name: "cyware-agent33"}
+        - { name: "cyware-agent34"}
+        - { name: "cyware-agent35"}
+        - { name: "cyware-agent36"}
+        - { name: "cyware-agent37"}
+        - { name: "cyware-agent38"}
+        - { name: "cyware-agent39"}
+        - { name: "cyware-agent40"}
+
+
+- name: Cyware Master
+  hosts: cyware-master
+  vars:
+    master_hostname: "cyware-master"
+  vars_files:
+    - ./vars/configurations.yml
+  roles:
+    - name: "roles/master-role"
+
+- name: Cyware Worker1
+  hosts: cyware-worker1
+  vars:
+    worker_name: cyware-worker1
+  vars_files:
+    - ./vars/configurations.yml
+  roles:
+    - name: "roles/worker-role"
+
+- name: Cyware Worker2
+  hosts: cyware-worker2
+  vars:
+    worker_name: cyware-worker2
+  vars_files:
+    - ./vars/configurations.yml
+  roles:
+    - name: "roles/worker-role"
+
+- name: Cyware Agents
+  hosts: agents
+  vars:
+    manager_hostname: cyware-master
+  roles:
+    - name: "roles/agent-role"

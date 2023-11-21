@@ -1,0 +1,6 @@
+yum/cyware-manager-VERSION-1.x86_64.rpm
+apt/pool/main/w/cyware-manager/cyware-manager_VERSION-1_amd64.deb
+yum/cyware-dashboard-VERSION-1.x86_64.rpm
+yum/cyware-indexer-VERSION-1.x86_64.rpm
+apt/pool/main/w/cyware-agent/cyware-agent_VERSION-1_amd64.deb
+yum/cyware-agent-VERSION-1.x86_64.rpm

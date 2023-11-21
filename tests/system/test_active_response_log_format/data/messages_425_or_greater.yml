@@ -1,0 +1,8 @@
+---
+cyware-agent3:
+  - regex: "(cyware-agent3).*('\\$token': `132`!)"
+    path: "/var/ossec/logs/active-responses.log"
+    timeout: 60
+  - regex: "(cyware-agent3).*('\\$token': `132`!)"
+    path: "/var/ossec/logs/ossec.log"
+    timeout: 60

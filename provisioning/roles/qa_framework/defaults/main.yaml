@@ -1,0 +1,8 @@
+qa_repository_url: https://github.com/cyware/cyware-qa.git
+qa_repository_reference: master
+qa_requirements_file: requirements.txt
+test_setup_qa_path: deps/cyware_testing
+setup_installer: setup.py
+build_dir: /tmp/cyware-qa
+# This flag allows modifying any var
+customize: false

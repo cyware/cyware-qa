@@ -1,0 +1,21 @@
+---
+cyware-master:
+  - regex: ".*Agent key generated for agent 'cyware-agent2'.*"
+    path: "/var/ossec/logs/ossec.log"
+    timeout: 90
+
+cyware-worker1:
+  - regex: ".*Agent key generated for 'cyware-agent2'.*"
+    path: "/var/ossec/logs/ossec.log"
+    timeout: 90
+
+cyware-agent2:
+  - regex: '.*Lost connection with manager. Setting lock.*'
+    path: '/var/ossec/logs/ossec.log'
+    timeout: 90
+  - regex: '.*Trying to connect to server \(\[cyware-worker1.*'
+    path: '/var/ossec/logs/ossec.log'
+    timeout: 90
+  - regex: '.*Connected to the server \(\[cyware-worker1.*'
+    path: '/var/ossec/logs/ossec.log'
+    timeout: 90

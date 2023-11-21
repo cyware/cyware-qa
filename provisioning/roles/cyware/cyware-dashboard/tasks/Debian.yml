@@ -1,0 +1,36 @@
+---
+- block:
+
+  - include_vars: debian.yml
+  - name: Add apt repository signing key
+    apt_key:
+      url: "{{ cyware_repo.gpg }}"
+      state: present
+
+  - name: Debian systems | Add Cyware dashboard repo
+    apt_repository:
+      repo: "{{ cyware_repo.apt }}"
+      state: present
+      update_cache: yes
+
+  - name: Install Cyware dashboard dependencies
+    apt:
+      name: [
+        'libnss3-dev', 'fonts-liberation', 'libfontconfig1'
+      ]
+      state: present
+
+  - name: Install Cyware dashboard
+    apt:
+      name: "cyware-dashboard={{ dashboard_version }}-*"
+      state: present
+      update_cache: yes
+    register: install
+
+  tags:
+    - install
+  when: not cyware_custom_packages_installation_dashboard_enabled
+
+- include_tasks: "install_from_custom_package.yml"
+  when:
+    - cyware_custom_packages_installation_dashboard_enabled

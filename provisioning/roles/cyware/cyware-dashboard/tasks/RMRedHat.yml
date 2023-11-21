@@ -1,0 +1,6 @@
+---
+- name: Remove Cyware dashboard repository (and clean up left-over metadata)
+  yum_repository:
+    name: cyware_repo
+    state: absent
+  changed_when: false

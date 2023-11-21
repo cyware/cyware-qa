@@ -1,0 +1,44 @@
+# REQUIRED VARIABLES
+# -------------------
+# (String) os: Target operating system
+
+- name: Get Cyware installation
+  include_role:
+    name: service_controller
+    tasks_from: get_installation_type
+
+- name: Populate services facts
+  service_facts:
+  when: os == 'linux'
+
+- name: Check the status of Cyware components (Manager - Linux)
+  set_fact:
+    check_result: 'true'
+    errors: "{{ errors }}{{ ansible_facts.services[item].name }} is not running.\n"
+  when: (os == 'linux' and 'server' in cyware_info.stdout and ansible_facts.services[item].state != 'running')
+  with_items:
+    - cyware-manager.service
+    - cyware-indexer.service
+    - filebeat.service
+
+- set_fact:
+    service: cyware-agent.service
+  when: (os == 'linux' and 'agent' in cyware_info.stdout)
+
+- name: Check the status of Cyware Agent (Linux)
+  set_fact:
+    check_result: 'true'
+    errors: "{{ errors }}{{ ansible_facts.services[service].name }} is not running.\n"
+  when: (os == 'linux' and 'agent' in cyware_info.stdout and ansible_facts.services[service].state != 'running')
+
+- name: Get the status of Cyware Agent (Windows)
+  ansible.windows.win_powershell:
+    script: Get-Service "CywareSvc" | select Status
+  register: script_result
+  when: os == 'windows'
+
+- name: Check the status of Cyware Agent (Windows)
+  set_fact:
+    check_result: 'true'
+    errors: "{{ errors }}CywareSvc is not running (Windows).\n"
+  when: (os == 'windows' and 'agent' in cyware_info.stdout and 'Running' != script_result.output[0].Status.String)

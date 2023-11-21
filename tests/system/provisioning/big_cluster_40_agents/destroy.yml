@@ -1,0 +1,54 @@
+---
+- hosts: localhost
+  tasks:
+  - docker_container:
+      name: "{{item}}"
+      state: absent
+      force_kill: yes
+    with_items:
+      - "cyware-master"
+      - "cyware-worker1"
+      - "cyware-worker2"
+      - "cyware-agent1"
+      - "cyware-agent2"
+      - "cyware-agent3"
+      - "cyware-agent4"
+      - "cyware-agent5"
+      - "cyware-agent6"
+      - "cyware-agent7"
+      - "cyware-agent8"
+      - "cyware-agent9"
+      - "cyware-agent10"
+      - "cyware-agent11"
+      - "cyware-agent12"
+      - "cyware-agent13"
+      - "cyware-agent14"
+      - "cyware-agent15"
+      - "cyware-agent16"
+      - "cyware-agent17"
+      - "cyware-agent18"
+      - "cyware-agent19"
+      - "cyware-agent20"
+      - "cyware-agent21"
+      - "cyware-agent22"
+      - "cyware-agent23"
+      - "cyware-agent24"
+      - "cyware-agent25"
+      - "cyware-agent26"
+      - "cyware-agent27"
+      - "cyware-agent28"
+      - "cyware-agent29"
+      - "cyware-agent30"
+      - "cyware-agent31"
+      - "cyware-agent32"
+      - "cyware-agent33"
+      - "cyware-agent34"
+      - "cyware-agent35"
+      - "cyware-agent36"
+      - "cyware-agent37"
+      - "cyware-agent38"
+      - "cyware-agent39"
+      - "cyware-agent40"
+
+
+

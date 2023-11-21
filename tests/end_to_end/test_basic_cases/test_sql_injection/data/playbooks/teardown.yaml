@@ -1,0 +1,17 @@
+- name: Cleanup CentOS agent environment
+  hosts: centos-agent
+  become: true
+  tasks:
+
+    - name: Delete localfile configuration
+      blockinfile:
+        path: /var/ossec/etc/ossec.conf
+        marker: <!-- {mark} ANSIBLE MANAGED BLOCK -->
+        block: ''
+
+    - name: Restart cyware-agent
+      include_role:
+        name: manage_cyware
+        tasks_from: restart_cyware.yaml
+      vars:
+        os: linux

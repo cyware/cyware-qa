@@ -1,0 +1,157 @@
+all:
+  hosts:
+    cyware-master:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+managers:
+  hosts:
+    cyware-master:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+master:
+  hosts:
+    cyware-master:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+workers:
+  hosts:
+    cyware-worker1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-worker2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+agents:
+  hosts:
+    cyware-agent1:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent2:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent3:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent4:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent5:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent6:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent7:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent8:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent9:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent10:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent11:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent12:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent13:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent14:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent15:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent16:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent17:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent18:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent19:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent20:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent21:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent22:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent23:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent24:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent25:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent26:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent27:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent28:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent29:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent30:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent31:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent32:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent33:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent34:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent35:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent36:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent37:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent38:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent39:
+      ansible_connection: docker
+      ansible_python_interpreter: python
+    cyware-agent40:
+      ansible_connection: docker
+      ansible_python_interpreter: python

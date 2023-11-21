@@ -1,0 +1,22 @@
+- name: Cleanup manager environment
+  hosts: manager
+  become: true
+  vars:
+    conf_path: /var/ossec/etc/ossec.conf
+  tasks:
+
+    - name: Clean added host
+      shell: ssh-keygen -R localhost
+
+    - name: Remove the Slack integration block
+      blockinfile:
+        path: "{{ conf_path }}"
+        marker: <!-- {mark} SLACK INTEGRATION BLOCK -->
+        state: absent
+
+    - name: Restart cyware-manager
+      include_role:
+        name: manage_cyware
+        tasks_from: restart_cyware.yaml
+      vars:
+        os: linux

@@ -1,0 +1,238 @@
+- name: cloudtrail_discard_regex
+  description: CloudTrail discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: cloudtrail
+    BUCKET_NAME: cyware-cloudtrail-integration-tests
+    DISCARD_FIELD: eventSource
+    DISCARD_REGEX: .*ec2.amazonaws.com.*
+    PATH: ''
+  metadata:
+    bucket_type: cloudtrail
+    bucket_name: cyware-cloudtrail-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: eventSource
+    discard_regex: .*ec2.amazonaws.com.*
+    found_logs: 5
+    skipped_logs: 1
+
+- name: vpc_discard_regex
+  description: VPC discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: vpcflow
+    BUCKET_NAME: cyware-vpcflow-integration-tests
+    DISCARD_FIELD: srcport
+    DISCARD_REGEX: "5319"
+    PATH: ''
+  metadata:
+    bucket_type: vpcflow
+    bucket_name: cyware-vpcflow-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: srcport
+    discard_regex: "5319"
+    found_logs: 5
+    skipped_logs: 1
+
+- name: config_discard_regex
+  description: Config discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: config
+    BUCKET_NAME: cyware-config-integration-tests
+    DISCARD_FIELD: configuration.complianceType
+    DISCARD_REGEX: .*COMPLIANT.*
+    PATH: ''
+  metadata:
+    bucket_type: config
+    bucket_name: cyware-config-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: configuration.complianceType
+    discard_regex: .*COMPLIANT.*
+    found_logs: 5
+    skipped_logs: 1
+
+- name: alb_discard_regex
+  description: ALB discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: alb
+    BUCKET_NAME: cyware-alb-integration-tests
+    DISCARD_FIELD: elb_status_code
+    DISCARD_REGEX: '401'
+    PATH: ''
+  metadata:
+    bucket_type: alb
+    bucket_name: cyware-alb-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: elb_status_code
+    discard_regex: '401'
+    found_logs: 5
+    skipped_logs: 1
+
+- name: clb_discard_regex
+  description: CLB discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: clb
+    BUCKET_NAME: cyware-clb-integration-tests
+    DISCARD_FIELD: elb_status_code
+    DISCARD_REGEX: '401'
+    PATH: ''
+  metadata:
+    bucket_type: clb
+    bucket_name: cyware-clb-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: elb_status_code
+    discard_regex: '401'
+    found_logs: 5
+    skipped_logs: 1
+
+- name: nlb_discard_regex
+  description: NLB discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: nlb
+    BUCKET_NAME: cyware-nlb-integration-tests
+    DISCARD_FIELD: listener
+    DISCARD_REGEX: 0CMK2UAG108C7AXK
+    PATH: ''
+  metadata:
+    bucket_type: nlb
+    bucket_name: cyware-nlb-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: listener
+    discard_regex: 0CMK2UAG108C7AXK
+    found_logs: 5
+    skipped_logs: 1
+
+- name: kms_discard_regex
+  description: KMS discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: custom
+    BUCKET_NAME: cyware-kms-integration-tests
+    DISCARD_FIELD: eventName
+    DISCARD_REGEX: MatchDataKey
+    PATH: ''
+  metadata:
+    bucket_type: custom
+    bucket_name: cyware-kms-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: eventName
+    discard_regex: MatchDataKey
+    found_logs: 3
+    skipped_logs: 1
+
+- name: macie_discard_regex
+  description: Macie discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: custom
+    BUCKET_NAME: cyware-macie-integration-tests
+    DISCARD_FIELD: severity
+    DISCARD_REGEX: LOW
+    PATH: ''
+  metadata:
+    bucket_type: custom
+    bucket_name: cyware-macie-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: severity
+    discard_regex: LOW
+    found_logs: 3
+    skipped_logs: 1
+
+- name: trusted_advisor_discard_regex
+  description: Trusted Advisor discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: custom
+    BUCKET_NAME: cyware-trusted-advisor-integration-tests
+    DISCARD_FIELD: status
+    DISCARD_REGEX: ERROR
+    PATH: ''
+  metadata:
+    bucket_type: custom
+    bucket_name: cyware-trusted-advisor-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: status
+    discard_regex: ERROR
+    found_logs: 3
+    skipped_logs: 1
+
+- name: guardduty_discard_regex
+  description: GuardDuty discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: guardduty
+    BUCKET_NAME: cyware-guardduty-integration-tests
+    DISCARD_FIELD: partition
+    DISCARD_REGEX: aws-test
+    PATH: ''
+  metadata:
+    bucket_type: guardduty
+    bucket_name: cyware-guardduty-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: partition
+    discard_regex: aws-test
+    found_logs: 3
+    skipped_logs: 1
+
+- name: native_guardduty_discard_regex
+  description: Native GuardDuty discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: guardduty
+    BUCKET_NAME: cyware-native-guardduty-integration-tests
+    DISCARD_FIELD: partition
+    DISCARD_REGEX: aws-test
+    PATH: ''
+  metadata:
+    bucket_type: guardduty
+    bucket_name: cyware-native-guardduty-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: partition
+    discard_regex: aws-test
+    found_logs: 3
+    skipped_logs: 1
+
+- name: waf_discard_regex
+  description: WAF discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: waf
+    BUCKET_NAME: cyware-waf-integration-tests
+    DISCARD_FIELD: action
+    DISCARD_REGEX: ALLOW
+    PATH: ''
+  metadata:
+    bucket_type: waf
+    bucket_name: cyware-waf-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: action
+    discard_regex: ALLOW
+    found_logs: 3
+    skipped_logs: 1
+
+- name: server_access_discard_regex
+  description: Server Access discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: server_access
+    BUCKET_NAME: cyware-server-access-integration-tests
+    DISCARD_FIELD: http_status
+    DISCARD_REGEX: '200'
+    PATH: ''
+  metadata:
+    bucket_type: server_access
+    bucket_name: cyware-server-access-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: http_status
+    discard_regex: '200'
+    found_logs: 3
+    skipped_logs: 1
+
+- name: cisco_umbrella_discard_regex
+  description: CloudTrail discard regex configurations
+  configuration_parameters:
+    BUCKET_TYPE: cisco_umbrella
+    BUCKET_NAME: cyware-umbrella-integration-tests
+    DISCARD_FIELD: action
+    DISCARD_REGEX: Blocked
+    PATH: dnslogs
+  metadata:
+    bucket_type: cisco_umbrella
+    bucket_name: cyware-umbrella-integration-tests
+    only_logs_after: 2022-NOV-20
+    discard_field: action
+    discard_regex: Blocked
+    found_logs: 3
+    skipped_logs: 1
+    path: dnslogs

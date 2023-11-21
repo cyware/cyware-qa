@@ -1,0 +1,33 @@
+# REQUIRED VARIABLES
+# -------------------
+#
+# GENERIC:
+#  - (String) os: Target operating system
+
+- name: Get installation type
+  become: true
+  shell: /var/ossec/bin/cyware-control info
+  register: cyware_info
+  when: os == 'linux'
+
+- name: Restart manager service on linux
+  become: true
+  service:
+    name: cyware-manager
+    state: restarted
+  when: (os == 'linux' and 'server' in cyware_info.stdout)
+
+- name: Restart agent service on linux
+  become: true
+  service:
+    name: cyware-agent
+    state: restarted
+  when: (os == 'linux' and 'agent' in cyware_info.stdout)
+
+- name: Restart cyware on Windows
+  win_shell: |
+    net stop Cyware
+    net start Cyware
+  args:
+    executable: powershell.exe
+  when: os == 'windows'

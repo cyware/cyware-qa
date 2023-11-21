@@ -1,0 +1,21 @@
+- name: Cleanup Windows agent environment
+  hosts: windows-agent
+  tasks:
+
+    - name: Delete syscheck configuration
+      win_lineinfile:
+        path: C:\Program Files (x86)\ossec-agent\ossec.conf
+        regex: C\:\\\\Test\\\\test_demo_fim
+        state: absent
+
+    - name: Delete directory to monitor (Windows)
+      win_file:
+        path: C:\Test
+        state: absent
+
+    - name: Restart cyware-agent
+      include_role:
+        name: manage_cyware
+        tasks_from: restart_cyware.yaml
+      vars:
+        os: windows

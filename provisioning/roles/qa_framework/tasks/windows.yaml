@@ -1,0 +1,20 @@
+- name: Delete the file, if it doesnt exist already
+  win_file:
+    path: "{{ build_dir }}"
+    state: absent
+
+- name: Clone Cyware-QA repo | Windows
+  win_command: powershell.exe -
+  args:
+    stdin: >
+      git clone {{ qa_repository_url }} -b {{ qa_repository_reference }} {{ build_dir }}
+
+- name: Install Python requirements
+  win_command: "{{ ansible_python_interpreter }} -m pip install -r {{ qa_requirements_file }} --no-cache-dir --only-binary=:cryptography,grpcio:"
+  args:
+    chdir: "{{ build_dir }}"
+
+- name: Install setup.py | Windows
+  win_command: "{{ ansible_python_interpreter }} {{ setup_installer }} install"
+  args:
+    chdir: "{{ build_dir }}\\{{ test_setup_qa_path }}"

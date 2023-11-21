@@ -1,0 +1,16 @@
+# Windows
+- name: Include Windows custom vars
+  include_vars: windows.yaml
+  when:
+    - customize == false
+    - ansible_os_family == "Windows"
+
+# Unix|Solaris|macOS
+- name: Include Unix custom tasks
+  include_tasks: linux.yaml
+  when: ansible_os_family != "Windows"
+
+# Windows
+- name: Include Windows custom tasks
+  include_tasks: windows.yaml
+  when: ansible_os_family == "Windows"

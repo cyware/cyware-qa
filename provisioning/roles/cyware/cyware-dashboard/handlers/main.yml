@@ -1,0 +1,3 @@
+---
+- name: restart cyware-dashboard
+  service: name=cyware-dashboard state=restarted

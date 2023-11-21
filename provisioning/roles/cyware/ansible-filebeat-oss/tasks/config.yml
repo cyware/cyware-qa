@@ -1,0 +1,22 @@
+---
+- block:
+  - name: Copy Filebeat configuration.
+    template:
+      src: filebeat.yml.j2
+      dest: "/etc/filebeat/filebeat.yml"
+      owner: root
+      group: root
+      mode: 0400
+    notify: restart filebeat
+
+  - name: Fetch latest Cyware alerts template
+    get_url:
+      url: https://raw.githubusercontent.com/cyware/cyware/{{ cyware_template_branch }}/extensions/elasticsearch/7.x/cyware-template.json
+      dest: "/etc/filebeat/cyware-template.json"
+      owner: root
+      group: root
+      mode: 0400
+    notify: restart filebeat
+
+  tags:
+  - configure

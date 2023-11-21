@@ -1,0 +1,12 @@
+---
+- name: restart cyware-manager
+  service:
+    name: cyware-manager
+    state: restarted
+    enabled: true
+
+- name: restart cyware-api
+  service:
+    name: cyware-api
+    state: restarted
+    enabled: true

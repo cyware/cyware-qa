@@ -1,0 +1,13 @@
+- name: remoted_endpoint
+  description: remoted statistics endpoint
+  configuration_parameters:
+    ENDPOINT: cyware-remoted
+  metadata:
+    endpoint: cyware-remoted
+
+- name: analysisd_endpoint
+  description: analysisd statistics endpoint
+  configuration_parameters:
+    ENDPOINT: cyware-analysisd
+  metadata:
+    endpoint: cyware-analysisd

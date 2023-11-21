@@ -1,0 +1,47 @@
+---
+- name: "Check and update debian repositories"
+  shell:
+    cmd: apt-get update --allow-releaseinfo-change
+
+- name: "Installing dependencies using apt"
+  apt:
+    pkg:
+      - git
+      - gcc
+      - make
+      - cmake
+      - libc6-dev
+      - curl
+      - policycoreutils
+      - automake
+      - autoconf
+      - libtool
+      - libssl-dev
+    force_apt_get: yes
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: "Get agent package"
+  ansible.builtin.get_url:
+    url: "https://{{package_repository}}.cyware.khulnasoft.com/{{repository}}/apt/pool/main/w/cyware-agent/cyware-agent_{{package_version}}-{{package_revision}}_amd64.deb"
+    dest: /tmp/cyware-agent.deb
+
+- name: "Install agent package"
+  ansible.builtin.apt:
+    deb: /tmp/cyware-agent.deb
+
+- name: Copy ossec.conf file
+  copy:
+    src: ../files/ossec.conf
+    dest: /var/ossec/etc/ossec.conf
+    owner: cyware
+    group: cyware
+    mode: '0644'
+
+- name: Set Cyware Manager IP
+  lineinfile:
+    path: /var/ossec/etc/ossec.conf
+    regexp: '<address>(.*)</address>'
+    line: "<address>{{ manager_hostname }}</address>"
+    backrefs: yes

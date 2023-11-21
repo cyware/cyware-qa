@@ -1,0 +1,10 @@
+cluster_key: "00000000000000000000000000000000"
+
+master_hostname: "cyware-master"
+
+worker1_hostname: "cyware-worker1"
+worker2_hostname: "cyware-worker2"
+
+docker_network: "agentless_cluster_net"
+
+image: "dontpanicat/debian:buster"
