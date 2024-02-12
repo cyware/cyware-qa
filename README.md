@@ -4,8 +4,7 @@
 [![Email](https://img.shields.io/badge/email-join-blue.svg)](https://groups.google.com/forum/#!forum/cyware)
 [![Documentation](https://img.shields.io/badge/docs-view-green.svg)](https://documentation.cyware.khulnasoft.com)
 [![Documentation](https://img.shields.io/badge/web-view-green.svg)](https://cyware.khulnasoft.com)
-[![Twitter](https://img.shields.io/twitter/follow/cyware?style=social)](https://twitter.com/cyware)
-[![YouTube](https://img.shields.io/youtube/views/peTSzcAueEc?style=social)](https://www.youtube.com/watch?v=peTSzcAueEc)
+[![Twitter](https://img.shields.io/twitter/follow/khulnasoft?style=social)](https://twitter.com/khulnasoft)
 
 
 Cyware is a free and open source platform used for threat prevention, detection, and response. It is capable of protecting workloads across on-premises, virtualized, containerized, and cloud-based environments.
