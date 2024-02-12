@@ -1,5 +1,5 @@
 configobj==5.0.6
-certifi>=2022.12.7
+certifi==2020.12.5
 cffi>=1.14.0; platform_system == "Linux" or platform_system == "Darwin" or platform_system=='Windows'
 cycler>=0.10; platform_system == "Linux" or platform_system == "Darwin" or platform_system=='Windows'
 bcrypt==3.2.0; platform_system == "Linux" or platform_system == "Darwin" or platform_system=='Windows'
@@ -17,8 +17,7 @@ numpy>=1.18.1
 pandas>=1.1.5
 pillow>=6.2.0; platform_system == "Linux" or platform_system == "Darwin" or platform_system=='Windows'
 psutil>=5.6.6
-py~=1.10.0; platform_system != "Windows" or python_version <= "3.10"
-py==1.11.0; platform_system == "Windows" and python_version >= "3.11"
+py~=1.10.0
 pycryptodome>=3.9.8
 pyOpenSSL==19.1.0
 pytest-html==3.1.1
@@ -31,9 +30,8 @@ seaborn>=0.11.1; platform_system == "Linux" or platform_system == "Darwin" or pl
 setuptools~=56.0.0
 testinfra==5.0.0
 jq==1.1.2 ; (platform_system == "Linux" or platform_system == "Darwin") and python_version <= "3.9"
-jq==1.2.2 ; (platform_system == "Linux" or platform_system == "Darwin") and python_version == "3.10"
-jq==1.6.0 ; (platform_system == "Linux" or platform_system == "Darwin") and python_version >= "3.11"
-cryptography==42.0.0; platform_system == "Linux" or platform_system == "Darwin" or platform_system=='Windows'
+jq==1.2.2 ; (platform_system == "Linux" or platform_system == "Darwin") and python_version >= "3.10"
+cryptography==3.3.2; platform_system == "Linux" or platform_system == "Darwin" or platform_system=='Windows'
 urllib3>=1.26.5,<2
 numpydoc>=1.1.0
 ansible-runner>=2.0.1 ; platform_system == "Linux"
@@ -50,6 +48,3 @@ deepdiff==5.6.0; platform_system == "Linux" or platform_system=='Windows'
 libcst==0.3.23 ; python_version <= '3.6'
 treelib==1.6.1
 prettytable; platform_system == "Linux"
-mysql-connector-python==8.0.32; platform_system == 'Linux' and python_version >= '3.7'
-protobuf>=3.11.0,<=3.20.3; platform_system == 'Linux' and python_version >= '3.7'
-boto3>=1.17.85; platform_system == 'Linux'
