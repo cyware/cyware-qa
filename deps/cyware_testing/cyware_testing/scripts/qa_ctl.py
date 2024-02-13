@@ -1,4 +1,4 @@
-# Copyright (C) 2015-2021, KhulnaSoft Ltd.
+# Copyright (C) 2023-2024, KhulnaSoft Ltd.
 # Created by Cyware, Inc. <info@khulnasoft.com>.
 # This program is free software; you can redistribute it and/or modify it under the terms of GPLv2
 import json

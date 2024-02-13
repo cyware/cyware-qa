@@ -1,5 +1,5 @@
 '''
-copyright: Copyright (C) 2015-20212, KhulnaSoft Ltd.
+copyright: Copyright (C) 2023-20242, KhulnaSoft Ltd.
            Created by Cyware, Inc. <info@khulnasoft.com>.
            This program is free software; you can redistribute it and/or modify it under the terms of GPLv2
 
