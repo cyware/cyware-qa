@@ -18,7 +18,7 @@ jobs:
 
       - name: Get the updated files
         id: updated_files
-        uses: Ana06/get-changed-files@v2.1.0
+        uses: Ana06/get-changed-files@v2.3.0
         with:
           format: csv
 
